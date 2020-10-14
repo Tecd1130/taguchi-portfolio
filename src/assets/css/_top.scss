@@ -1,0 +1,110 @@
+.mv {
+  img {
+    width: 100%;
+  }
+}
+
+.skill {
+  padding: 3rem 0;
+  @include sm {
+    padding: 6rem 0;
+  }
+}
+
+.skill-row {
+  margin-top: 3rem;
+  @include sm {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+}
+
+.skill-row-item {
+  @include sm {
+    width: calc(100% / 3 - 10px);
+  }
+  @include md {
+    width: calc(100% / 3 - 40px);
+  }
+  &:not(:first-child) {
+    margin-top: 3.5rem;
+    @include sm {
+      margin-top: 0;
+    }
+  }
+}
+
+.skill-row-icon-wrap {
+  text-align: center;
+  @include sm {
+    position: relative;
+    background: #fff;
+    border-radius: 50%;
+    width: 141px;
+    height: 141px;
+    margin: auto;
+  }
+}
+
+.skill-row-icon {
+  @include sm {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  &--web {
+    width: 3.5rem;
+    @include sm {
+      width: 4.6rem;
+    }
+  }
+  &--logo {
+    width: 3.5rem;
+    @include sm {
+      width: 4.1rem;
+    }
+  }
+  &--illust {
+    width: 4rem;
+    @include sm {
+      width: 4.8rem;
+    }
+  }
+}
+
+.skill-row-title {
+  margin-top: 1.5rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+  text-align: center;
+  @include sm {
+    margin-top: 3rem;
+    font-size: 2.2rem;
+  }
+  span {
+    display: block;
+    color: #919191;
+    font-size: 1.1rem;
+    @include sm {
+      font-size: 1.4rem;
+    }
+  }
+}
+
+.skill-row-text {
+  margin-top: 1.5rem;
+  font-size: 1.4rem;
+  line-height: 1.6;
+  @include sm {
+    margin-top: 3rem;
+  }
+  @include md {
+    font-size: 1.6rem;
+  }
+}
+
+.works {
+  margin-top: 6rem;
+}
