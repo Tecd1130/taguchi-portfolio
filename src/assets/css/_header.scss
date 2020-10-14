@@ -44,10 +44,6 @@
   z-index: 100;
   cursor: pointer;
   @include sm {
-    height: 30px;
-    width: 30px;
-  }
-  @include md {
     display: none;
   }
 }
@@ -97,7 +93,7 @@
   z-index: 99;
   background: #fff;
   transition: 0.5s;
-  @include md {
+  @include sm {
     width: auto;
     position: relative;
     top: auto;
@@ -112,7 +108,7 @@
 }
 
 .header-nav-list {
-  @include md {
+  @include sm {
     display: flex;
   }
 }
@@ -120,16 +116,20 @@
 .header-nav-item {
   border-bottom: 0.1rem solid #707070;
   padding: 1.5rem 1rem;
-  @include md {
+  @include sm {
     border: none;
+    padding: 0;
   }
   &:first-child {
     border-top: 0.1rem solid #707070;
-    @include md {
+    @include sm {
       border: none;
     }
   }
   &:not(:first-child) {
+    @include sm {
+      margin-left: 20px;
+    }
     @include md {
       margin-left: 50px;
     }
