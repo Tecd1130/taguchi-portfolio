@@ -1,0 +1,10 @@
+html {
+  font-size: 2.6666667vw;
+  @include sm {
+    font-size: 10px;
+  }
+}
+
+body {
+  background: #eee;
+}

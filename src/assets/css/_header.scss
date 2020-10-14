@@ -1,0 +1,142 @@
+.header {
+  position: fixed;
+  left: calc(50% - 93% / 2);
+  display: flex;
+  align-items: center;
+  height: 5rem;
+  width: 93%;
+  margin: auto;
+  background: #fff;
+  border-radius: 0 0 2rem 2rem;
+  @include md {
+    width: 1200px;
+    max-width: 100%;
+    left: calc(50% - 1200px / 2);
+  }
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 3rem;
+}
+
+.header-logo {
+  width: 5rem;
+  img {
+    width: 100%;
+  }
+}
+
+.header-nav-check {
+  display: none;
+}
+
+.header-nav-toggle {
+  display: flex;
+  height: 3rem;
+  width: 3rem;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 100;
+  cursor: pointer;
+  @include sm {
+    height: 30px;
+    width: 30px;
+  }
+  @include md {
+    display: none;
+  }
+}
+
+.header-nav-toggle span,
+.header-nav-toggle span:before,
+.header-nav-toggle span:after {
+  content: "";
+  display: block;
+  height: 0.3rem;
+  width: 2.5rem;
+  border-radius: 0.3rem;
+  background: #707070;
+  transition: 0.5s;
+  position: absolute;
+}
+
+.header-nav-toggle span:before {
+  bottom: 0.8rem;
+}
+
+.header-nav-toggle span:after {
+  top: 0.8rem;
+}
+
+.header-nav-check:checked ~ .header-nav-toggle span {
+  background: rgba(255, 255, 255, 0);
+}
+
+.header-nav-check:checked ~ .header-nav-toggle span::before {
+  bottom: 0;
+  transform: rotate(45deg);
+}
+
+.header-nav-check:checked ~ .header-nav-toggle span::after {
+  top: 0;
+  transform: rotate(-45deg);
+}
+
+.header-nav {
+  width: 100%;
+  height: 100%;
+  padding: 7rem 2rem;
+  position: fixed;
+  top: 0;
+  left: 100%;
+  z-index: 99;
+  background: #fff;
+  transition: 0.5s;
+  @include md {
+    width: auto;
+    position: relative;
+    top: auto;
+    left: auto;
+    padding: 0;
+    transition: 0s;
+  }
+}
+
+.header-nav-check:checked ~ .header-nav {
+  left: 0;
+}
+
+.header-nav-list {
+  @include md {
+    display: flex;
+  }
+}
+
+.header-nav-item {
+  border-bottom: 0.1rem solid #707070;
+  padding: 1.5rem 1rem;
+  @include md {
+    border: none;
+  }
+  &:first-child {
+    border-top: 0.1rem solid #707070;
+    @include md {
+      border: none;
+    }
+  }
+  &:not(:first-child) {
+    @include md {
+      margin-left: 50px;
+    }
+  }
+  a {
+    display: block;
+    font-size: 1.6rem;
+    font-weight: bold;
+  }
+}
