@@ -1,5 +1,5 @@
 import React from "react";
-import { Header, Footer } from "../components/index";
+import { Header, Footer, WorksCard } from "../components/index";
 import MV from "../assets/img/mv.png";
 import MV_SP from "../assets/img/mv_sp.png";
 import IconIllust from "../assets/img/icon_illust.png";
@@ -81,7 +81,11 @@ const Top = () => {
           <h2 className="section-title">
             実績<span>Works</span>
           </h2>
-
+          <div className="works-card-list">
+            <WorksCard></WorksCard>
+            <WorksCard></WorksCard>
+            <WorksCard></WorksCard>
+          </div>
           <a href="/works/" className="works-link">
             もっと見る
           </a>

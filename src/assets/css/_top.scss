@@ -106,5 +106,93 @@
 }
 
 .works {
-  margin-top: 6rem;
+  padding: 3rem 0;
+  @include sm {
+    position: relative;
+    padding: 6rem 0;
+    &::before {
+      content: "";
+      border-top: 2px solid #d9dadc;
+      display: block;
+      width: 1200px;
+      max-width: 100%;
+      margin: -3rem auto 0;
+      padding-bottom: 3rem;
+    }
+  }
+}
+
+.works-card-list {
+  margin-top: 3rem;
+  @include md {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+}
+
+.works-card {
+  display: block;
+  @include sm {
+    max-width: 500px;
+    margin: auto;
+  }
+  @include md {
+    width: calc(100% / 3 - 20px);
+    max-width: none;
+  }
+  &:not(:first-child) {
+    margin-top: 2rem;
+    @include sm {
+      margin-top: 3rem;
+    }
+    @include md {
+      margin-top: 0;
+    }
+  }
+}
+
+.works-card-img {
+  width: 100%;
+}
+
+.works-card-client {
+  margin-top: 1rem;
+  color: #919191;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.works-card-content {
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.works-link {
+  position: relative;
+  background: #131933;
+  display: block;
+  border-radius: 3rem;
+  width: 30rem;
+  margin: 5rem auto 0;
+  padding: 2rem 0;
+  color: #fff;
+  font-size: 2.1rem;
+  font-weight: bold;
+  text-align: center;
+  @include md {
+    width: 36rem;
+  }
+  &::after {
+    content: "";
+    background: url("../img/icon_btnArrow.png") no-repeat center center/cover;
+    width: 2.9rem;
+    height: 2.9rem;
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 2rem;
+    transform: translateY(-50%);
+  }
 }
