@@ -12,13 +12,13 @@ const Footer = () => {
         <nav className="footer-nav">
           <ul className="footer-nav-list">
             <li className="footer-nav-item">
+              <a href="/">TOP</a>
+            </li>
+            <li className="footer-nav-item">
               <a href="/works/">実績</a>
             </li>
             <li className="footer-nav-item">
               <a href="/profile/">プロフィール</a>
-            </li>
-            <li className="footer-nav-item">
-              <a href="/contact/">お問い合せ</a>
             </li>
           </ul>
         </nav>

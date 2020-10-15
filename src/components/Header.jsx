@@ -17,13 +17,13 @@ const Header = () => {
         <nav className="header-nav">
           <ul className="header-nav-list">
             <li className="header-nav-item">
+              <a href="/">TOP</a>
+            </li>
+            <li className="header-nav-item">
               <a href="/works/">実績</a>
             </li>
             <li className="header-nav-item">
               <a href="/profile/">プロフィール</a>
-            </li>
-            <li className="header-nav-item">
-              <a href="/contact/">お問い合せ</a>
             </li>
           </ul>
         </nav>
