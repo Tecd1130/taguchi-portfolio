@@ -76,17 +76,17 @@ const Top = () => {
         </div>
       </section>
 
-      <section className="works">
+      <section className="worksTop">
         <div className="inner">
           <h2 className="section-title">
             実績<span>Works</span>
           </h2>
-          <div className="works-card-list">
+          <div className="worksTop-card-list">
             <WorksCard></WorksCard>
             <WorksCard></WorksCard>
             <WorksCard></WorksCard>
           </div>
-          <a href="/works/" className="works-link">
+          <a href="/works/" className="worksTop-link">
             もっと見る
           </a>
         </div>
