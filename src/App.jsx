@@ -3,12 +3,12 @@ import Router from "./Router";
 import "./assets/css/reset.css";
 import "./assets/css/style.scss";
 
-function App() {
+const App = () => {
   return (
     <>
       <Router></Router>
     </>
   );
-}
+};
 
 export default App;
