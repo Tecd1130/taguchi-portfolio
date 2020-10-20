@@ -16,12 +16,17 @@ const useStyles = makeStyles({
   },
 });
 
-const PrimaryButton = () => {
+const PrimaryButton = (props) => {
   const classes = useStyles();
 
   return (
-    <Button variant="contained" color="primary" className={classes.button}>
-      ログイン
+    <Button
+      onClick={props.onClick}
+      variant="contained"
+      color="primary"
+      className={classes.button}
+    >
+      {props.label}
     </Button>
   );
 };

@@ -4,7 +4,9 @@ import { makeStyles } from "@material-ui/styles";
 
 const useStyles = makeStyles({
   input: {
-    fontSize: 16,
+    "& > *": {
+      fontSize: "1.6rem",
+    },
   },
 });
 
@@ -21,6 +23,7 @@ const TextInput = (props) => {
       rows={props.rows}
       value={props.value}
       type={props.type}
+      onChange={props.onChange}
     />
   );
 };

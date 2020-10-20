@@ -6,7 +6,7 @@ import "./assets/css/style.scss";
 const App = () => {
   return (
     <>
-      <Router></Router>
+      <Router />
     </>
   );
 };

@@ -1,7 +1,11 @@
 import React, { useState, useCallback } from "react";
+import { useHistory } from "react-router-dom";
 import { TextInput, PrimaryButton } from "../components/index";
+import { auth } from "../firebase/index";
 
 const Login = () => {
+  const history = useHistory();
+
   const [email, setEmail] = useState(""),
     [password, setPassword] = useState("");
 
@@ -18,6 +22,34 @@ const Login = () => {
     },
     [setPassword]
   );
+
+  const signIn = async (email, password) => {
+    if (email === "" || password === "") {
+      alert("必須項目が未入力です");
+      return false;
+    } else {
+      await auth
+        .signInWithEmailAndPassword(email, password)
+        .then(() => {
+          alert("サインインに成功しました");
+          history.push("/");
+        })
+        .catch((error) => {
+          alert("サインインエラー");
+        });
+    }
+  };
+
+  const signOut = () => {
+    auth
+      .signOut()
+      .then(() => {
+        alert("ログアウトしました");
+      })
+      .catch((error) => {
+        alert("ログアウト時にエラーが発生しました");
+      });
+  };
 
   return (
     <div className="login">
@@ -46,7 +78,19 @@ const Login = () => {
           onChange={inputPassword}
         />
         <div className="spacer-md"></div>
-        <PrimaryButton />
+        <PrimaryButton
+          onClick={() => {
+            signIn(email, password);
+          }}
+          label={"ログイン"}
+        />
+        <div className="spacer-md"></div>
+        <PrimaryButton
+          onClick={() => {
+            signOut();
+          }}
+          label={"ログアウト"}
+        />
       </div>
     </div>
   );

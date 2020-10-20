@@ -6,11 +6,11 @@ const Router = () => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/login/" children={Login} />
-        <Route exact path="/" children={Top} />
-        <Route exact path="/profile/" children={Profile} />
-        <Route exact path="/works/" children={Works} />
-        <Route exact path="/works/detail/" children={WorksDetail} />
+        <Route exact path="/login/" component={Login} />
+        <Route exact path="/" component={Top} />
+        <Route exact path="/profile/" component={Profile} />
+        <Route exact path="/works/" component={Works} />
+        <Route exact path="/works/detail/" component={WorksDetail} />
       </Switch>
     </BrowserRouter>
   );
