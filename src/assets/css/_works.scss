@@ -148,3 +148,33 @@
   font-weight: 600;
   line-height: 1.5;
 }
+
+.works-edit {
+  padding: 5rem 0;
+  @include sm {
+    padding: 10rem 0;
+  }
+}
+
+.works-edit-title {
+  font-size: 2rem;
+  text-align: center;
+  @include sm {
+    font-size: 2.4rem;
+  }
+}
+
+.works-edit-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.works-edit-row-input {
+  width: calc(50% - 10px);
+}
+
+.works-edit-img-label {
+  font-size: 1.6rem;
+}
