@@ -93,6 +93,13 @@
     display: flex;
     flex-wrap: wrap;
   }
+  &::after {
+    @include md {
+      display: block;
+      content: "";
+      width: calc(100% / 3 - 20px);
+    }
+  }
 }
 
 .works-card {

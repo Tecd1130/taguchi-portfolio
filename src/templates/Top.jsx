@@ -1,12 +1,35 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Header, Footer, WorksCard } from "../components/index";
 import MV from "../assets/img/mv.png";
 import MV_SP from "../assets/img/mv_sp.png";
 import IconIllust from "../assets/img/icon_illust.png";
 import IconWeb from "../assets/img/icon_web.png";
 import IconLogo from "../assets/img/icon_logo.png";
+import { db } from "../firebase";
 
 const Top = () => {
+  const [works, setWorks] = useState([]);
+
+  useEffect(() => {
+    let unmounted = false;
+
+    const fetchWorks = async () => {
+      const worksRef = db.collection("works");
+      let query = worksRef.orderBy("updated_at", "desc");
+      return await query.get().then((snapshots) => {
+        snapshots.forEach((snapshot) => {
+          const workList = snapshot.data();
+          setWorks((prevState) => [...prevState, workList]);
+        });
+      });
+    };
+
+    fetchWorks();
+    const cleanup = () => {
+      unmounted = true;
+    };
+    return cleanup;
+  }, []);
   return (
     <>
       <Header></Header>
@@ -82,9 +105,16 @@ const Top = () => {
             実績<span>Works</span>
           </h2>
           <div className="worksTop-card-list">
-            <WorksCard></WorksCard>
-            <WorksCard></WorksCard>
-            <WorksCard></WorksCard>
+            {works.length > 3 &&
+              works.map((work) => (
+                <WorksCard
+                  key={work.id}
+                  id={work.id}
+                  client={work.client}
+                  title={work.title}
+                  thumb={work.thumb[0].path}
+                />
+              ))}
           </div>
           <a href="/works/" className="worksTop-link">
             もっと見る

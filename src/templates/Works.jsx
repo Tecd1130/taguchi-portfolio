@@ -1,13 +1,37 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Header, Footer, WorksCard } from "../components/index";
-import IconAll from "../assets/img/icon_all.png";
-import IconWeb from "../assets/img/icon_web.png";
-import IconBanner from "../assets/img/icon_banner.png";
-import IconIllustWorks from "../assets/img/icon_illust_works.png";
-import IconLogoWorks from "../assets/img/icon_logo_works.png";
-import IconPlan from "../assets/img/icon_plan.png";
+// import IconAll from "../assets/img/icon_all.png";
+// import IconWeb from "../assets/img/icon_web.png";
+// import IconBanner from "../assets/img/icon_banner.png";
+// import IconIllustWorks from "../assets/img/icon_illust_works.png";
+// import IconLogoWorks from "../assets/img/icon_logo_works.png";
+// import IconPlan from "../assets/img/icon_plan.png";
+import { db } from "../firebase";
 
 const Works = () => {
+  const [works, setWorks] = useState([]);
+
+  useEffect(() => {
+    let unmounted = false;
+
+    const fetchWorks = async () => {
+      const worksRef = db.collection("works");
+      let query = worksRef.orderBy("updated_at", "desc");
+      return await query.get().then((snapshots) => {
+        snapshots.forEach((snapshot) => {
+          const workList = snapshot.data();
+          setWorks((prevState) => [...prevState, workList]);
+        });
+      });
+    };
+
+    fetchWorks();
+    const cleanup = () => {
+      unmounted = true;
+    };
+    return cleanup;
+  }, []);
+
   return (
     <>
       <Header></Header>
@@ -16,64 +40,68 @@ const Works = () => {
           <h2 className="section-title">
             実績<span>Works</span>
           </h2>
-          <ul className="works-tab-list">
+          {/* <ul className="works-tab-list">
             <li className="works-tab-item">
               <img
-                class="works-tab-img works-tab-img--all"
+                className="works-tab-img works-tab-img--all"
                 src={IconAll}
                 alt=""
               />
-              <p class="works-tab-text">すべて</p>
+              <p className="works-tab-text">すべて</p>
             </li>
             <li className="works-tab-item">
               <img
-                class="works-tab-img works-tab-img--web"
+                className="works-tab-img works-tab-img--web"
                 src={IconWeb}
                 alt=""
               />
-              <p class="works-tab-text">Web</p>
+              <p className="works-tab-text">Web</p>
             </li>
             <li className="works-tab-item">
               <img
-                class="works-tab-img works-tab-img--banner"
+                className="works-tab-img works-tab-img--banner"
                 src={IconBanner}
                 alt=""
               />
-              <p class="works-tab-text">バナー</p>
+              <p className="works-tab-text">バナー</p>
             </li>
             <li className="works-tab-item">
               <img
-                class="works-tab-img works-tab-img--logo"
+                className="works-tab-img works-tab-img--logo"
                 src={IconLogoWorks}
                 alt=""
               />
-              <p class="works-tab-text">ロゴデザイン</p>
+              <p className="works-tab-text">ロゴデザイン</p>
             </li>
             <li className="works-tab-item">
               <img
-                class="works-tab-img works-tab-img--illust"
+                className="works-tab-img works-tab-img--illust"
                 src={IconIllustWorks}
                 alt=""
               />
-              <p class="works-tab-text">イラスト</p>
+              <p className="works-tab-text">イラスト</p>
             </li>
             <li className="works-tab-item">
               <img
-                class="works-tab-img works-tab-img--plan"
+                className="works-tab-img works-tab-img--plan"
                 src={IconPlan}
                 alt=""
               />
-              <p class="works-tab-text">写真商品企画</p>
+              <p className="works-tab-text">写真商品企画</p>
             </li>
-          </ul>
+          </ul> */}
 
           <div className="works-card-list">
-            <WorksCard></WorksCard>
-            <WorksCard></WorksCard>
-            <WorksCard></WorksCard>
-            <WorksCard></WorksCard>
-            <WorksCard></WorksCard>
-            <WorksCard></WorksCard>
+            {works.length > 0 &&
+              works.map((work) => (
+                <WorksCard
+                  key={work.id}
+                  id={work.id}
+                  client={work.client}
+                  title={work.title}
+                  thumb={work.thumb[0].path}
+                />
+              ))}
           </div>
         </div>
       </section>

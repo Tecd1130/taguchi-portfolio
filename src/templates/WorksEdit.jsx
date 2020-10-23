@@ -1,5 +1,10 @@
 import React, { useState, useCallback } from "react";
-import { TextInput, PrimaryButton, ImageArea } from "../components/index";
+import {
+  TextInput,
+  PrimaryButton,
+  ImageArea,
+  SelectBox,
+} from "../components/index";
 import { db, FirebaseTimestamp } from "../firebase";
 
 const WorksEdit = () => {
@@ -46,8 +51,17 @@ const WorksEdit = () => {
     [setDescription]
   );
 
+  const categories = [
+    { id: "web", name: "web" },
+    { id: "banner", name: "バナー" },
+    { id: "logo", name: "ロゴデザイン" },
+    { id: "illust", name: "イラスト" },
+    { id: "graphic", name: "印刷物" },
+  ];
+
   const saveProduct = async (
     id,
+    category,
     thumb,
     thumbSP,
     title,
@@ -65,6 +79,7 @@ const WorksEdit = () => {
     const timestamp = FirebaseTimestamp.now();
 
     const data = {
+      category: category,
       thumb: thumb,
       thumbSP: thumbSP,
       title: title,
@@ -106,6 +121,14 @@ const WorksEdit = () => {
         <div className="inner">
           <h2 className="works-edit-title">実績の編集・登録</h2>
           <div className="spacer-md"></div>
+          <SelectBox
+            label={"カテゴリー"}
+            required={true}
+            options={categories}
+            select={setCategory}
+            value={category}
+          />
+          <div className="spacer-sm"></div>
           <ImageArea
             images={thumb}
             setImages={setThumb}
@@ -203,6 +226,7 @@ const WorksEdit = () => {
             onClick={() => {
               saveProduct(
                 id,
+                category,
                 thumb,
                 thumbSP,
                 title,

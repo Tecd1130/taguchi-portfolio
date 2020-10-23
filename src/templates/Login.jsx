@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { TextInput, PrimaryButton } from "../components/index";
 import { auth } from "../firebase/index";
 
-const Login = () => {
+const Login = (props) => {
   const history = useHistory();
 
   const [email, setEmail] = useState(""),
@@ -28,9 +28,10 @@ const Login = () => {
       alert("必須項目が未入力です");
       return false;
     } else {
-      await auth
+      return await auth
         .signInWithEmailAndPassword(email, password)
         .then(() => {
+          props.setIsLogin(true);
           alert("サインインに成功しました");
           history.push("/");
         })
@@ -41,9 +42,10 @@ const Login = () => {
   };
 
   const signOut = () => {
-    auth
+    return auth
       .signOut()
       .then(() => {
+        props.setIsLogin(true);
         alert("ログアウトしました");
       })
       .catch((error) => {
