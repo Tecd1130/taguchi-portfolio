@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import {
   Login,
@@ -8,37 +8,32 @@ import {
   WorksDetail,
   WorksEdit,
 } from "./templates";
-import Auth from "./Auth";
+import { auth } from "./firebase/index";
 
-class Router extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isLogin: false,
-    };
-  }
-  render() {
-    return (
-      <BrowserRouter>
-        <Switch>
-          <Route
-            exact
-            path="/login/"
-            render={() => <Login isLogin={isLogin} />}
-          />
-          <Auth isLogin={isLogin}>
-            <Switch>
-              <Route exact path="/" component={Top} />
-              <Route exact path="/profile/" component={Profile} />
-              <Route exact path="/works/" component={Works} />
-              <Route exact path="/works/:id" component={WorksDetail} />
-              <Route path="/works/edit/(:id)?" component={WorksEdit} />
-            </Switch>
-          </Auth>
-        </Switch>
-      </BrowserRouter>
-    );
-  }
-}
+const Router = () => {
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      let setUrl = "/login/";
+      if (!user && window.location.pathname != setUrl) {
+        return (window.location.href = "/login/");
+      } else {
+        return;
+      }
+    });
+  }, []);
+
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/login/" component={Login} />
+        <Route exact path="(/)?" component={Top} />
+        <Route exact path="/profile/" component={Profile} />
+        <Route exact path="/works/" component={Works} />
+        <Route exact path="/works/detail/:id" component={WorksDetail} />
+        <Route path="/works/edit(/:id)?" component={WorksEdit} />
+      </Switch>
+    </BrowserRouter>
+  );
+};
 
 export default Router;

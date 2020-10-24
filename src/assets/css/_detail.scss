@@ -8,6 +8,10 @@
 .detail-mv {
   img {
     width: 100%;
+    border-radius: 2rem;
+    @include sm {
+      border-radius: 0;
+    }
   }
 }
 

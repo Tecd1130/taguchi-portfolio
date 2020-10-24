@@ -15,7 +15,8 @@ const WorksEdit = () => {
     id = id.split("/")[1];
   }
 
-  const [category, setCategory] = useState(""),
+  const [date, setDate] = useState(""),
+    [category, setCategory] = useState(""),
     [thumb, setThumb] = useState(""),
     [thumbSP, setThumbSP] = useState(""),
     [title, setTitle] = useState(""),
@@ -28,6 +29,13 @@ const WorksEdit = () => {
     [image01SP, setImage01SP] = useState(""),
     [image02SP, setImage02SP] = useState(""),
     [image03SP, setImage03SP] = useState("");
+
+  const inputDate = useCallback(
+    (event) => {
+      setDate(event.target.value);
+    },
+    [setDate]
+  );
 
   const inputTitle = useCallback(
     (event) => {
@@ -66,6 +74,7 @@ const WorksEdit = () => {
 
   const saveProduct = async (
     id,
+    date,
     category,
     thumb,
     thumbSP,
@@ -84,6 +93,7 @@ const WorksEdit = () => {
     const timestamp = FirebaseTimestamp.now();
 
     const data = {
+      date: date,
       category: category,
       thumb: thumb,
       thumbSP: thumbSP,
@@ -112,7 +122,7 @@ const WorksEdit = () => {
       .set(data, { merge: true })
       .then(() => {
         alert("完了");
-        history.push("/works/edit/");
+        history.push("/works/");
       })
       .catch((error) => {
         alert("エラー");
@@ -126,6 +136,7 @@ const WorksEdit = () => {
         .get()
         .then((snapshot) => {
           const data = snapshot.data();
+          setDate(data.date);
           setCategory(data.category);
           setThumb(data.thumb);
           setThumbSP(data.thumbSP);
@@ -148,6 +159,17 @@ const WorksEdit = () => {
       <section className="works-edit">
         <div className="inner">
           <h2 className="works-edit-title">実績の編集・登録</h2>
+          <div className="spacer-md"></div>
+          <TextInput
+            fullWidth={true}
+            label={"制作日時"}
+            multiline={false}
+            required={true}
+            onChange={inputDate}
+            rows={1}
+            value={date}
+            type={"text"}
+          />
           <div className="spacer-md"></div>
           <SelectBox
             label={"カテゴリー"}
@@ -270,6 +292,7 @@ const WorksEdit = () => {
             onClick={() => {
               saveProduct(
                 id,
+                date,
                 category,
                 thumb,
                 thumbSP,

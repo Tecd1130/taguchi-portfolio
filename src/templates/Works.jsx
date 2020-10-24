@@ -14,7 +14,7 @@ const Works = () => {
   useEffect(() => {
     const fetchWorks = async () => {
       const worksRef = db.collection("works");
-      let query = worksRef.orderBy("updated_at", "desc");
+      let query = worksRef.orderBy("date", "desc");
       return await query.get().then((snapshots) => {
         snapshots.forEach((snapshot) => {
           const workList = snapshot.data();

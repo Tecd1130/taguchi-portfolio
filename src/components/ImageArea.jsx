@@ -20,7 +20,7 @@ const ImageArea = (props) => {
     if (!ret) {
       return false;
     } else {
-      return storage.ref(props.images).delete();
+      return storage.ref().child().delete();
     }
   }, [props.images]);
 
@@ -43,7 +43,6 @@ const ImageArea = (props) => {
         uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
           const newImage = downloadURL;
           props.setImages(newImage);
-          console.log(props.images);
         });
       });
     },
