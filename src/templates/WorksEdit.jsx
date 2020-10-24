@@ -198,10 +198,10 @@ const WorksEdit = () => {
           <TextInput
             fullWidth={true}
             label={"実績の見出し"}
-            multiline={false}
+            multiline={true}
             required={true}
             onChange={inputTitle}
-            rows={1}
+            rows={2}
             value={title}
             type={"text"}
           />

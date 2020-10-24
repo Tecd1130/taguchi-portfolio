@@ -8,10 +8,12 @@
   margin: auto;
   background: #fff;
   border-radius: 0 0 2rem 2rem;
+  z-index: 99;
   @include md {
     width: 1200px;
     max-width: 100%;
-    left: calc(50% - 1200px / 2);
+    left: 50%;
+    transform: translateX(-50%);
   }
 }
 

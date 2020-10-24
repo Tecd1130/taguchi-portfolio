@@ -11,6 +11,12 @@ const useStyles = makeStyles({
     minWidth: 128,
     width: "100%",
   },
+  inputLabel: {
+    fontSize: "1.6rem",
+  },
+  selectLabel: {
+    fontSize: "1.4rem",
+  },
 });
 
 const SelectBox = (props) => {
@@ -18,14 +24,19 @@ const SelectBox = (props) => {
 
   return (
     <FormControl className={classes.formControl}>
-      <InputLabel>{props.label}</InputLabel>
+      <InputLabel className={classes.inputLabel}>{props.label}</InputLabel>
       <Select
         required={props.required}
         value={props.value}
         onChange={(event) => props.select(event.target.value)}
+        className={classes.inputLabel}
       >
         {props.options.map((option) => (
-          <MenuItem key={option.id} value={option.id}>
+          <MenuItem
+            key={option.id}
+            value={option.id}
+            className={classes.selectLabel}
+          >
             {option.name}
           </MenuItem>
         ))}

@@ -38,7 +38,7 @@ const WorksDetail = () => {
               <source srcSet={works.thumbSP} media="(min-width: 320px)" />
               <img src={works.thumbSP} alt="" />
             </picture>
-            <p className="detail-info">{works.title}</p>
+            <p className="detail-info">{returnCodeToBr(works.title)}</p>
             <div className="detail-client">
               <p className="detail-client-card">クライアント</p>
               <p className="detail-client-text">{works.client}</p>
@@ -63,6 +63,12 @@ const WorksDetail = () => {
               <source srcSet={works.image03SP} media="(min-width: 320px)" />
               <img src={works.image03SP} alt="" />
             </picture>
+            <p className="detail-attention">
+              ※当ページに掲載の内容について、一切の転載を禁止いたします。
+            </p>
+            <a href="/works/" className="worksTop-link">
+              実績に戻る
+            </a>
           </div>
         )}
       </section>

@@ -92,6 +92,7 @@
     margin-top: 6rem;
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
   }
   &::after {
     @include md {
@@ -111,6 +112,7 @@
   @include md {
     width: calc(100% / 3 - 20px);
     max-width: none;
+    margin: 0;
   }
   &:not(:first-child) {
     margin-top: 2rem;
