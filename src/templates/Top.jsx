@@ -32,8 +32,8 @@ const Top = () => {
 
       <div className="mv">
         <picture>
-          <source media="(min-width: 960px)" srcset={MV} />
-          <source media="(min-width: 320px)" srcset={MV_SP} />
+          <source media="(min-width: 960px)" srcSet={MV} />
+          <source media="(min-width: 320px)" srcSet={MV_SP} />
           <img src={MV_SP} alt="" />
         </picture>
       </div>
