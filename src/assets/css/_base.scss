@@ -57,3 +57,17 @@ body {
 .display-none {
   display: none;
 }
+
+.pc-block {
+  display: none;
+  @include sm {
+    display: block;
+  }
+}
+
+.sp-block {
+  display: block;
+  @include sm {
+    display: none;
+  }
+}

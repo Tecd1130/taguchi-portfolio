@@ -1,4 +1,5 @@
 import React from "react";
+import ScrollTop from "./ScrollTop";
 import FooterLogo from "../assets/img/logo_footer.png";
 
 const Footer = () => {
@@ -19,6 +20,9 @@ const Footer = () => {
             </li>
             <li className="footer-nav-item">
               <a href="/profile/">プロフィール</a>
+            </li>
+            <li>
+              <ScrollTop />
             </li>
           </ul>
         </nav>

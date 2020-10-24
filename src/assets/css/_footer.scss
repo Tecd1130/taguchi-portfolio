@@ -68,3 +68,16 @@
     font-size: 1.6rem;
   }
 }
+
+.scroll-top {
+  cursor: pointer;
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  @include sm {
+    position: relative;
+    bottom: auto;
+    right: auto;
+    margin-left: 6rem;
+  }
+}
