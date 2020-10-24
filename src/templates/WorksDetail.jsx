@@ -4,7 +4,8 @@ import { db } from "../firebase";
 import HTMLReactParser from "html-react-parser";
 
 const WorksDetail = () => {
-  const id = "jupW6sYHKIaAXE4AiGPI";
+  const path = window.location.href;
+  const id = path.split("/works/detail/")[1];
 
   const [works, setWorks] = useState(null);
 
@@ -32,9 +33,11 @@ const WorksDetail = () => {
       <section className="detail">
         {works && (
           <div className="inner">
-            <div className="detail-mv">
-              <img src={works.thumb[0].path} alt="" />
-            </div>
+            <picture className="detail-mv">
+              <source srcSet={works.thumb} media="(min-width: 600px)" />
+              <source srcSet={works.thumbSP} media="(min-width: 320px)" />
+              <img src={works.thumbSP} alt="" />
+            </picture>
             <p className="detail-info">{works.title}</p>
             <div className="detail-client">
               <p className="detail-client-card">クライアント</p>
@@ -45,23 +48,21 @@ const WorksDetail = () => {
               <p className="detail-charge-text">{works.charge}</p>
             </div>
             <p className="detail-text">{returnCodeToBr(works.description)}</p>
-            <img src={works.thumb[2].path} alt="" />
-            <img src={works.thumb[4].path} alt="" />
-            <img src={works.thumb[6].path} alt="" />
-            {/* <picture className="detail-img">
-              <source srcset="{works.image01}" />
-              <source srcset="" />
+            <picture className="detail-img">
+              <source srcSet={works.image01} media="(min-width: 600px)" />
+              <source srcSet={works.image01SP} media="(min-width: 320px)" />
+              <img src={works.image01SP} alt="" />
             </picture>
             <picture className="detail-img">
-              <source srcset="" />
-              <source srcset="" />
-              <img src={works.image02} alt="" />
+              <source srcSet={works.image02} media="(min-width: 600px)" />
+              <source srcSet={works.image02SP} media="(min-width: 320px)" />
+              <img src={works.image02SP} alt="" />
             </picture>
             <picture className="detail-img">
-              <source srcset="" />
-              <source srcset="" />
-              <img src={works.image03} alt="" />
-            </picture> */}
+              <source srcSet={works.image03} media="(min-width: 600px)" />
+              <source srcSet={works.image03SP} media="(min-width: 320px)" />
+              <img src={works.image03SP} alt="" />
+            </picture>
           </div>
         )}
       </section>

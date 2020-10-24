@@ -11,8 +11,6 @@ const Top = () => {
   const [works, setWorks] = useState([]);
 
   useEffect(() => {
-    let unmounted = false;
-
     const fetchWorks = async () => {
       const worksRef = db.collection("works");
       let query = worksRef.orderBy("updated_at", "desc");
@@ -20,16 +18,14 @@ const Top = () => {
         snapshots.forEach((snapshot) => {
           const workList = snapshot.data();
           setWorks((prevState) => [...prevState, workList]);
+          console.log(workList.id);
         });
       });
     };
 
     fetchWorks();
-    const cleanup = () => {
-      unmounted = true;
-    };
-    return cleanup;
   }, []);
+
   return (
     <>
       <Header></Header>
@@ -105,14 +101,14 @@ const Top = () => {
             実績<span>Works</span>
           </h2>
           <div className="worksTop-card-list">
-            {works.length > 3 &&
+            {works.length > 0 &&
               works.map((work) => (
                 <WorksCard
                   key={work.id}
                   id={work.id}
                   client={work.client}
                   title={work.title}
-                  thumb={work.thumb[0].path}
+                  thumb={work.thumbSP}
                 />
               ))}
           </div>

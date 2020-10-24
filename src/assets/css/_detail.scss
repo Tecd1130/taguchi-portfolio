@@ -5,7 +5,14 @@
   }
 }
 
+.detail-mv {
+  img {
+    width: 100%;
+  }
+}
+
 .detail-info {
+  margin-top: 3rem;
   color: #131933;
   font-size: 1.8rem;
   font-weight: 600;
@@ -71,7 +78,11 @@
 }
 
 .detail-img {
+  display: block;
   margin-top: 3rem;
+  img {
+    width: 100%;
+  }
   @include sm {
     margin-top: 6rem;
   }

@@ -31,7 +31,6 @@ const Login = (props) => {
       return await auth
         .signInWithEmailAndPassword(email, password)
         .then(() => {
-          props.setIsLogin(true);
           alert("サインインに成功しました");
           history.push("/");
         })
@@ -45,7 +44,6 @@ const Login = (props) => {
     return auth
       .signOut()
       .then(() => {
-        props.setIsLogin(true);
         alert("ログアウトしました");
       })
       .catch((error) => {

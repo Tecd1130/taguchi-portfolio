@@ -15,19 +15,14 @@ const useStyles = makeStyles({
 const ImageArea = (props) => {
   const classes = useStyles();
 
-  const deleteImage = useCallback(
-    async (id) => {
-      const ret = window.confirm("この画像を削除しますか？");
-      if (!ret) {
-        return false;
-      } else {
-        const newImages = props.images.filter((image) => image.id !== id);
-        props.setImages(newImages);
-        return storage.ref(props.images).child(id).delete;
-      }
-    },
-    [props.images]
-  );
+  const deleteImage = useCallback(async () => {
+    const ret = window.confirm("この画像を削除しますか？");
+    if (!ret) {
+      return false;
+    } else {
+      return storage.ref(props.images).delete();
+    }
+  }, [props.images]);
 
   const uploadImage = useCallback(
     (event) => {
@@ -46,8 +41,9 @@ const ImageArea = (props) => {
 
       uploadTask.then(() => {
         uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
-          const newImage = { id: fileName, path: downloadURL };
-          props.setImages((prevState) => [...prevState, newImage]);
+          const newImage = downloadURL;
+          props.setImages(newImage);
+          console.log(props.images);
         });
       });
     },
@@ -57,30 +53,24 @@ const ImageArea = (props) => {
 
   return (
     <div>
-      <div className="p-grid__list-images">
-        {props.images.length > 0 &&
-          props.images.map((image) => (
-            <ImagePreview
-              id={image.id}
-              delete={deleteImage}
-              path={image.path}
-              key={image.id}
-            />
-          ))}
-      </div>
       <div className="u-text-right">
         <span className="works-edit-img-label">{props.label}</span>
         <IconButton className={classes.icon}>
-          <label htmlFor="image">
+          <label htmlFor={props.htmlFor}>
             <AddPhotoAlternateIcon />
             <input
               type="file"
               className="display-none"
-              id="image"
+              id={props.id}
               onChange={(event) => uploadImage(event)}
             />
           </label>
         </IconButton>
+      </div>
+      <div className="p-grid__list-images">
+        {props.images.length > 0 && (
+          <ImagePreview delete={deleteImage} path={props.images} />
+        )}
       </div>
     </div>
   );

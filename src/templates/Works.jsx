@@ -12,8 +12,6 @@ const Works = () => {
   const [works, setWorks] = useState([]);
 
   useEffect(() => {
-    let unmounted = false;
-
     const fetchWorks = async () => {
       const worksRef = db.collection("works");
       let query = worksRef.orderBy("updated_at", "desc");
@@ -24,12 +22,7 @@ const Works = () => {
         });
       });
     };
-
     fetchWorks();
-    const cleanup = () => {
-      unmounted = true;
-    };
-    return cleanup;
   }, []);
 
   return (
@@ -99,7 +92,7 @@ const Works = () => {
                   id={work.id}
                   client={work.client}
                   title={work.title}
-                  thumb={work.thumb[0].path}
+                  thumb={work.thumbSP}
                 />
               ))}
           </div>

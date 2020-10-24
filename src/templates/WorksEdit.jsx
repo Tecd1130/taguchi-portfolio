@@ -1,4 +1,5 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
+import { useHistory } from "react-router-dom";
 import {
   TextInput,
   PrimaryButton,
@@ -8,7 +9,11 @@ import {
 import { db, FirebaseTimestamp } from "../firebase";
 
 const WorksEdit = () => {
+  const history = useHistory();
   let id = window.location.pathname.split("/works/edit")[1];
+  if (id !== "") {
+    id = id.split("/")[1];
+  }
 
   const [category, setCategory] = useState(""),
     [thumb, setThumb] = useState(""),
@@ -104,16 +109,39 @@ const WorksEdit = () => {
 
     await worksRef
       .doc(id)
-      .set(data)
+      .set(data, { merge: true })
       .then(() => {
         alert("完了");
-        console.log(data);
+        history.push("/works/edit/");
       })
       .catch((error) => {
         alert("エラー");
-        console.log(data);
       });
   };
+
+  useEffect(() => {
+    if (id !== "") {
+      db.collection("works")
+        .doc(id)
+        .get()
+        .then((snapshot) => {
+          const data = snapshot.data();
+          setCategory(data.category);
+          setThumb(data.thumb);
+          setThumbSP(data.thumbSP);
+          setTitle(data.title);
+          setClient(data.client);
+          setCharge(data.charge);
+          setDescription(data.description);
+          setImage01(data.image01);
+          setImage02(data.image02);
+          setImage03(data.image03);
+          setImage01SP(data.image01SP);
+          setImage02SP(data.image02SP);
+          setImage03SP(data.image03SP);
+        });
+    }
+  }, [id]);
 
   return (
     <>
@@ -133,12 +161,16 @@ const WorksEdit = () => {
             images={thumb}
             setImages={setThumb}
             label={"実績MV(PC版)"}
+            htmlFor={"thumb"}
+            id={"thumb"}
           />
           <div className="spacer-sm"></div>
           <ImageArea
             images={thumbSP}
             setImages={setThumbSP}
             label={"実績MV(SP版)＆一覧画面のサムネイル"}
+            htmlFor={"thumbSP"}
+            id={"thumbSP"}
           />
           <div className="spacer-sm"></div>
           <TextInput
@@ -189,36 +221,48 @@ const WorksEdit = () => {
             images={image01}
             setImages={setImage01}
             label={"実績画像A(PC版)"}
+            htmlFor={"image01"}
+            id={"image01"}
           />
           <div className="spacer-sm"></div>
           <ImageArea
             images={image01SP}
             setImages={setImage01SP}
             label={"実績画像A(SP版)"}
+            htmlFor={"image01SP"}
+            id={"image01SP"}
           />
           <div className="spacer-sm"></div>
           <ImageArea
             images={image02}
             setImages={setImage02}
             label={"実績画像B(PC版)"}
+            htmlFor={"image02"}
+            id={"image02"}
           />
           <div className="spacer-sm"></div>
           <ImageArea
             images={image02SP}
             setImages={setImage02SP}
             label={"実績画像B(SP版)"}
+            htmlFor={"image02SP"}
+            id={"image02SP"}
           />
           <div className="spacer-sm"></div>
           <ImageArea
             images={image03}
             setImages={setImage03}
             label={"実績画像C(PC版)"}
+            htmlFor={"image03"}
+            id={"image03"}
           />
           <div className="spacer-sm"></div>
           <ImageArea
             images={image03SP}
             setImages={setImage03SP}
             label={"実績画像C(SP版)"}
+            htmlFor={"image03SP"}
+            id={"image03SP"}
           />
           <div className="spacer-sm"></div>
           <PrimaryButton
