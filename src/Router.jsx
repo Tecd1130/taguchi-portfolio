@@ -14,7 +14,7 @@ const Router = () => {
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       let setUrl = "/login/";
-      if (!user && window.location.pathname != setUrl) {
+      if (!user && window.location.pathname !== setUrl) {
         return (window.location.href = "/login/");
       } else {
         return;

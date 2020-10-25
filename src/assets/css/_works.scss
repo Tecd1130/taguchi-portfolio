@@ -115,7 +115,7 @@
     margin: 0;
   }
   &:not(:first-child) {
-    margin-top: 2rem;
+    margin-top: 3rem;
     @include sm {
       margin-top: 3rem;
     }
@@ -161,7 +161,7 @@
 }
 
 .works-card-content {
-  margin-top: 0.8rem;
+  margin-top: 0.3rem;
   font-size: 1.6rem;
   font-weight: 600;
   line-height: 1.5;

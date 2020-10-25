@@ -30,6 +30,9 @@
   img {
     width: 100%;
   }
+  a {
+    display: block;
+  }
 }
 
 .header-nav-check {
@@ -140,5 +143,6 @@
     display: block;
     font-size: 1.6rem;
     font-weight: bold;
+    font-feature-settings: "pkna";
   }
 }

@@ -16,8 +16,22 @@ const WorksDetail = () => {
       .then((doc) => {
         const data = doc.data();
         setWorks(data);
+        if (data.image01 === "") {
+          const image01 = document.getElementById("detail-img02");
+          image01.style.display = "none";
+        }
+        if (data.image02 === "") {
+          const image02 = document.getElementById("detail-img02");
+          image02.style.display = "none";
+        }
+        if (data.image03 === "") {
+          const image03 = document.getElementById("detail-img03");
+          image03.style.display = "none";
+        }
       });
   }, []);
+
+  useEffect(() => {}, []);
 
   const returnCodeToBr = (text) => {
     if (text === "") {
@@ -48,17 +62,17 @@ const WorksDetail = () => {
               <p className="detail-charge-text">{works.charge}</p>
             </div>
             <p className="detail-text">{returnCodeToBr(works.description)}</p>
-            <picture className="detail-img">
+            <picture id="detail-img01" className="detail-img">
               <source srcSet={works.image01} media="(min-width: 600px)" />
               <source srcSet={works.image01SP} media="(min-width: 320px)" />
               <img src={works.image01SP} alt="" />
             </picture>
-            <picture className="detail-img">
+            <picture id="detail-img02" className="detail-img">
               <source srcSet={works.image02} media="(min-width: 600px)" />
               <source srcSet={works.image02SP} media="(min-width: 320px)" />
               <img src={works.image02SP} alt="" />
             </picture>
-            <picture className="detail-img">
+            <picture id="detail-img03" className="detail-img">
               <source srcSet={works.image03} media="(min-width: 600px)" />
               <source srcSet={works.image03SP} media="(min-width: 320px)" />
               <img src={works.image03SP} alt="" />

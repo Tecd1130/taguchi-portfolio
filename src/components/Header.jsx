@@ -6,7 +6,9 @@ const Header = () => {
     <header className="header">
       <div className="header-inner">
         <h1 className="header-logo">
-          <img src={HeaderLogo} alt="i am" />
+          <a href="/">
+            <img src={HeaderLogo} alt="i am" />
+          </a>
         </h1>
 
         <input id="headerMenu" type="checkbox" className="header-nav-check" />

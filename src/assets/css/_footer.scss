@@ -48,10 +48,7 @@
 }
 
 .footer-nav-item {
-  margin-left: 1rem;
-  @include sm {
-    padding: 0;
-  }
+  margin-left: 2rem;
   &:not(:first-child) {
     @include sm {
       margin-left: 20px;
@@ -66,6 +63,7 @@
     display: block;
     color: #969696;
     font-size: 1.5rem;
+    font-feature-settings: "pkna";
   }
 }
 
