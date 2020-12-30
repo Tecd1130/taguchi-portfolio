@@ -148,7 +148,7 @@ const Works = () => {
                 src={IconPlan}
                 alt=""
               />
-              <p className="works-tab-text">写真商品企画</p>
+              <p className="works-tab-text">印刷物</p>
             </li>
           </ul>
 

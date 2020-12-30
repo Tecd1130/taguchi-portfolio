@@ -70,9 +70,9 @@
     }
   }
   &--plan {
-    width: 2.6rem;
+    width: 2rem;
     @include md {
-      width: 3.5rem;
+      width: 2.8rem;
     }
   }
 }
@@ -121,11 +121,17 @@
     }
     @include md {
       margin-top: 0;
+      margin-bottom: 4rem;
     }
   }
-  &:nth-child(n + 4) {
-    @include md {
-      margin-top: 4rem;
+}
+
+.worksTop {
+  .works-card {
+    &:not(:first-child) {
+      @include md {
+        margin-bottom: 0;
+      }
     }
   }
 }
