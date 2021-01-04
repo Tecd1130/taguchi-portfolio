@@ -5,7 +5,7 @@ import IconWeb from "../assets/img/icon_web.png";
 import IconBanner from "../assets/img/icon_banner.png";
 import IconIllustWorks from "../assets/img/icon_illust_works.png";
 import IconLogoWorks from "../assets/img/icon_logo_works.png";
-import IconPlan from "../assets/img/icon_plan.png";
+import IconGraphic from "../assets/img/icon_graphic.png";
 import { db } from "../firebase";
 
 const Works = () => {
@@ -81,15 +81,15 @@ const Works = () => {
     }
   };
 
-  const tabPlan = () => {
+  const tabGraphic = () => {
     const worksCard = document.getElementsByClassName("works-card");
-    const plan = document.getElementsByClassName("plan");
+    const graphic = document.getElementsByClassName("graphic");
 
     for (let i = 0; i < worksCard.length; i++) {
       worksCard[i].style.display = "none";
     }
-    for (let j = 0; j < plan.length; j++) {
-      plan[j].style.display = "block";
+    for (let j = 0; j < graphic.length; j++) {
+      graphic[j].style.display = "block";
     }
   };
 
@@ -142,10 +142,10 @@ const Works = () => {
               />
               <p className="works-tab-text">イラスト</p>
             </li>
-            <li className="works-tab-item" onClick={tabPlan}>
+            <li className="works-tab-item" onClick={tabGraphic}>
               <img
-                className="works-tab-img works-tab-img--plan"
-                src={IconPlan}
+                className="works-tab-img works-tab-img--graphic"
+                src={IconGraphic}
                 alt=""
               />
               <p className="works-tab-text">印刷物</p>
